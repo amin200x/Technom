@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- Base Definition -->
+	<definition name="base-definition"
+		template="/WEB-INF/views/pages/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/include/footer.jsp" />
+
+	</definition>
+
+	<!-- Home Page -->
+	<definition name="homepage" extends="base-definition">
+		<put-attribute name="title"
+			value="به سایت تکنوم خوش آمدی" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/homepage.jsp" />
+
+	</definition>
+
+
+	<!-- 403 Error -->
+	<definition name="403" extends="base-definition">
+		<put-attribute name="title" value="عدم دسترسی" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/403.jsp" />
+
+	</definition>
+
+	<!-- Add Content -->
+	<definition name="addContentForm" extends="base-definition">
+		<put-attribute name="title" value="محتوای جدید" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/addContentForm.jsp" />
+
+	</definition>
+
+	<!-- Create User -->
+	<definition name="addUserForm" extends="base-definition">
+		<put-attribute name="title" value="ایجاد کاربر" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/addUserForm.jsp" />
+
+	</definition>
+
+	<!-- Update User -->
+	<definition name="updateUserForm" extends="base-definition">
+		<put-attribute name="title" value=" ویرایش کاربر" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/updateUserForm.jsp" />
+
+	</definition>
+
+	<!-- Content List -->
+	<definition name="contentList" extends="base-definition">
+		<put-attribute name="title" value="لیست محتوا" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/contentList.jsp" />
+
+	</definition>
+
+	<!-- Error -->
+	<definition name="error" extends="base-definition">
+		<put-attribute name="title" value="حطای برنامه" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/error.jsp" />
+
+	</definition>
+
+	<!-- Login -->
+	<definition name="login" extends="base-definition">
+		<put-attribute name="title" value="ورود" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/login.jsp" />
+
+	</definition>
+	<!-- Reset Password -->
+	<definition name="resetPasswordForm"
+		extends="base-definition">
+		<put-attribute name="title" value="تغییر رمز ورود" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/resetPasswordForm.jsp" />
+
+	</definition>
+	<!-- Comment List -->
+	<definition name="showComments" extends="base-definition">
+		<put-attribute name="title" value="نظرات محتوا" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/showComments.jsp" />
+
+	</definition>
+
+	<!-- Show Content -->
+	<definition name="showContent" extends="base-definition">
+		<put-attribute name="title" value="محتوا" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/showContent.jsp" />
+
+	</definition>
+
+	<!-- Update Content -->
+	<definition name="updateContentForm"
+		extends="base-definition">
+		<put-attribute name="title" value="ویرایش محتوا" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/updateContentForm.jsp" />
+
+	</definition>
+
+	<!-- User List -->
+	<definition name="userList" extends="base-definition">
+		<put-attribute name="title" value="لیست کاربران سایت" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/userList.jsp" />
+
+	</definition>
+</tiles-definitions>

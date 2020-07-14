@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+	<bean id="myDataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" /> <!-- &useSSL=false ?createDatabaseIfNotExist=true;useSSL=false; -->
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/technom_db?createDatabaseIfNotExist=true&amp;characterEncoding=UTF-8&amp;useUnicode=yes" />
+		<property name="user" value="amin" />
+		<property name="password" value="agh6632263" />
+		<property name="minPoolSize" value="3" />
+		<property name="maxPoolSize" value="10" />
+		<property name="maxIdleTime" value="10000" />
+
+	</bean>
+
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+		<property name="dataSource" ref="myDataSource"></property>
+		<property name="packagesToScan" value="com.amin.technom"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">com.amin.technom.config.MySQLCustomDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.CharSet">utf8</prop>
+				<prop key="hibernate.connection.characterEncoding">utf8</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+				<!-- create-drop -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.import_files">classpath:com/amin/technom/config/initial_data.sql
+				</prop>
+			</props>
+		</property>
+
+
+
+	</bean>
+
+	<bean id="appTransactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+
+	<tx:annotation-driven
+		transaction-manager="appTransactionManager" />
+
+</beans>
