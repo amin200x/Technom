@@ -1,2 +1,2 @@
 ## Introduction
-This an web application who user can post a content(admin privilege), comment and reply to a comment.
+This a web application that user can post a content(admin privilege), comment and reply to a comment.
