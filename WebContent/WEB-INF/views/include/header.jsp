@@ -11,8 +11,30 @@
 <head>
 <meta charset="UTF-8">
 
-<meta name="description" content="website description" />
-<meta name="keywords" content="website keywords, website keywords" />
+<!-- SEO -->
+<meta name="description" content="Windows Linux Operation System Programming ویندوز سیستم عامل برنامه نویسی لینوکس"/>
+<link rel="canonical" href="" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="${contentModel.title}" />
+<meta property="og:description" content="وب سایتی برای دانستن در باره تکنولوژی های جدید" />
+<meta property="og:url" content="${pageContext.request.contextPath}/showContent/${contentModel.id}" />
+<meta property="og:site_name" content="Pagezii" />
+<meta property="article:publisher" content="" />
+<meta property="article:section" content="Technology Website" />
+<meta property="article:published_time" content="${contentModel.persianDate }" />
+<meta property="article:modified_time" content="${contentModel.persianDate }" />
+<meta property="og:updated_time" content="${contentModel.persianDate }" />
+<meta property="og:image" content="" />
+<meta property="og:image:secure_url" content="" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Windows, Linux, Technology, Amin Ghadimian, ویندوز لینوکس تکنولوژی امین قدیمیان" />
+<meta name="twitter:title" content="${contentModel.title}" />
+<meta name="twitter:site" content="@Technom تکنوم" />
+<meta name="twitter:image" content="" />
+<meta name="twitter:creator" content="@A.Ghadimian" />
+<!-- SEO -->
+<meta name="keywords" content="windows linux hardware technology سخت افزار نرم افزار کامپیوتر ویندوز لینوکس امین قدیمیان" />
 <meta http-equiv="content-type"
 	content="text/html; charset=windows-1252" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
