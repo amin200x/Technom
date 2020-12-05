@@ -10,7 +10,6 @@
 
 <head>
 <meta charset="UTF-8">
-
 <!-- SEO -->
 <meta name="description" content="Windows Linux Operation System Programming ویندوز سیستم عامل برنامه نویسی لینوکس"/>
 <link rel="canonical" href="" />
@@ -51,6 +50,7 @@
 <script
 	src="${pageContext.request.contextPath}/style/bootstrap.bundle.js"></script>
 
+<meta name="google-site-verification" content="igNeg0LhHoBUfoYuzF7bkg8nw7mTY1U9gyww2GaPZb0" />
 
 </head>
 

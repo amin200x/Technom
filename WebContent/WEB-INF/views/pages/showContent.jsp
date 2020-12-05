@@ -24,25 +24,35 @@
 			<div>${contentModel.htmlContent }</div>
 
 			<br>
+			<c:choose>
+				<c:when test="${pageContext.request.userPrincipal != null}">
+					<form:form
+						action="${pageContext.request.contextPath }/addComment/${contentModel.id }"
+						method="post" modelAttribute="commentModel">
+						<div class="form-group" style="margin-left: 70%">
+							<form:hidden path="id" />
+							<sec:authorize access="isAuthenticated()">
+								<input type="hidden" name="user.userName" id="user.userName"
+									value='<sec:authentication property="principal.username" />' />
+							</sec:authorize>
+						</div>
+						<div style="margin-left: 30%">
+							<form:textarea path="comment" PlaceHolder="نظر" required="true"
+								class="form-control" rows="7" col="12" dir="rtl" />
+						</div>
+						<br>
 
-			<form:form
-				action="${pageContext.request.contextPath }/addComment/${contentModel.id }"
-				method="post" modelAttribute="commentModel">
-				<div class="form-group" style="margin-left: 70%">
-					<form:hidden path="id" />
-					<sec:authorize access="isAuthenticated()">
-						<input type="hidden" name="user.userName" id="user.userName"
-							value='<sec:authentication property="principal.username" />' />
-					</sec:authorize>
-				</div>
-				<div style="margin-left: 30%">
-					<form:textarea path="comment" PlaceHolder="نظر" required="true"
-						class="form-control" rows="7" col="12" dir="rtl" />
-				</div>
-				<br>
+						<input type="submit" value="ثبت نظر" class="btn btn-secondary">
+					</form:form>
 
-				<input type="submit" value="ثبت نظر" class="btn btn-secondary">
-			</form:form>
+
+
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/login">برای ارسال
+						نظر باید وارد سایت شوید</a>
+				</c:otherwise>
+			</c:choose>
 
 
 			<sec:authorize access="hasRole('ADMIN')">
@@ -116,10 +126,10 @@
 								name="comments[${commentIndex.index}].replies[${replyIndex.index}].commentModel.id"
 								id="comments[${commentIndex.index}].replies[${replyIndex.index}].commentModel.id"
 								value="${reply.commentModel.id }" />
-								 <c:if
-						test="${reply.repliedTime!=null }">
-						<form:hidden path="comments[${commentIndex.index}].replies[${replyIndex.index}].repliedTime" />
-					</c:if>		
+							<c:if test="${reply.repliedTime!=null }">
+								<form:hidden
+									path="comments[${commentIndex.index}].replies[${replyIndex.index}].repliedTime" />
+							</c:if>
 							<div
 								class="border border-secondary rounded p-3 mb-2 bg-light text-dark"
 								style="margin-right: 20px; margin-left: 10px;">
@@ -152,9 +162,9 @@
 			</sec:authorize>
 			<sec:authorize access="!hasRole('ADMIN')">
 				<c:forEach var="comment" items="${contentModel.comments }"
-					varStatus="commentIndex" >
+					varStatus="commentIndex">
 					<c:if test="${comment.visibility == true }">
-						
+
 						<div
 							class="border border-primary rounded p-3 mb-2 bg-secondary text-white"
 							style="margin-right: 10px; margin-left: 5px; background-color: #a4a4c1;"">
@@ -170,27 +180,38 @@
 
 						</div>
 
-					<div id="replyForm${commentIndex.index}" name="replyForm">
-						<form:form
-							action="${pageContext.request.contextPath }/replyToComment/${comment.id }/${contentId }"
-							method="post" modelAttribute="replyCommentModel" >
-							<div class="form-group" style="margin-left: 70%">
-								<sec:authorize access="isAuthenticated()">
-									<input type="hidden" name="user.userName" id="user.userName"
-										value='<sec:authentication property="principal.username" />' />
-								</sec:authorize>
+						<div id="replyForm${commentIndex.index}" name="replyForm">
+							<c:choose>
+								<c:when test="${pageContext.request.userPrincipal != null}">
+									<form:form
+										action="${pageContext.request.contextPath }/replyToComment/${comment.id }/${contentId }"
+										method="post" modelAttribute="replyCommentModel">
+										<div class="form-group" style="margin-left: 70%">
+											<sec:authorize access="isAuthenticated()">
+												<input type="hidden" name="user.userName" id="user.userName"
+													value='<sec:authentication property="principal.username" />' />
+											</sec:authorize>
 
 
-							</div>
-							<div class="form-group" style="margin-left: 30%">
-								<form:textarea path="replyComment" PlaceHolder="پاسخ  به نظر"
-									required="true" class="form-control" rows="5" col="12"
-									dir="rtl" />
-							</div>
+										</div>
+										<div class="form-group" style="margin-left: 30%">
+											<form:textarea path="replyComment" PlaceHolder="پاسخ  به نظر"
+												required="true" class="form-control" rows="5" col="12"
+												dir="rtl" />
+										</div>
 
-							<input type="submit" value="ثبت پاسخ" class="btn btn-secondary" />
+										<input type="submit" value="ثبت پاسخ"
+											class="btn btn-secondary" />
 
-						</form:form>
+									</form:form>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/login">برای
+										پاسخ به نظر باید وارد سایت شوید</a>
+								</c:otherwise>
+							</c:choose>
+
+
 						</div>
 						<a href="javascript:void(0);"
 							onclick="showThisReplyForm('replyForm${commentIndex.index}', 'replyLink${commentIndex.index}')"
@@ -228,12 +249,12 @@
 <script type="text/javascript">
 	var replyForms = document.getElementsByName("replyForm");
 	var replyLinks = document.getElementsByName("replyLink");
-	
+
 	for (var i = 0; i < replyForms.length; i++) {
 		replyForms[i].style.display = "none";
 	}
 
-	function showThisReplyForm(formId, linkId ) {
+	function showThisReplyForm(formId, linkId) {
 		for (var i = 0; i < replyForms.length; i++) {
 			replyForms[i].style.display = "none";
 		}
